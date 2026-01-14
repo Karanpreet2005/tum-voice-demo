@@ -14,7 +14,7 @@
                 <p class="tagline">Amplifying Student Experiences</p>
             </div>
             <nav>
-                <button class="btn-primary">+ New Post</button>
+                <button class="btn-primary" id="newPostBtn">+ New Post</button>
             </nav>
         </div>
     </header>
@@ -241,33 +241,38 @@
     <div id="newPostModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Create New Post</h2>
-                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>✍️ Create New Post</h2>
+                <span class="close" id="closeModal">&times;</span>
             </div>
             <form id="newPostForm">
                 <div class="form-group">
-                    <label for="authorName">Your Name *</label>
-                    <input type="text" id="authorName" required placeholder="e.g., John Doe">
+                    <label for="postTitle">Post Title/Heading *</label>
+                    <input type="text" id="postTitle" required placeholder="E.g., Housing issues for international students">
                 </div>
+                
                 <div class="form-group">
-                    <label for="authorProgram">Program *</label>
-                    <input type="text" id="authorProgram" required placeholder="e.g., Computer Science">
+                    <label for="postContent">Your Story/Experience *</label>
+                    <textarea id="postContent" required rows="5" placeholder="Share your experience, concern, or feedback here..."></textarea>
                 </div>
+                
                 <div class="form-group">
-                    <label for="postTitle">Post Title *</label>
-                    <input type="text" id="postTitle" required placeholder="Summarize your concern in one line">
+                    <label for="authorName">Your Name</label>
+                    <input type="text" id="authorName" placeholder="Leave empty to post anonymously">
                 </div>
+                
                 <div class="form-group">
-                    <label for="postContent">Your Story *</label>
-                    <textarea id="postContent" required rows="6" placeholder="Share your experience, concern, or positive feedback..."></textarea>
+                    <label for="authorProgram">Your Field/Program *</label>
+                    <input type="text" id="authorProgram" required placeholder="E.g., Computer Science, Business, Engineering">
                 </div>
+                
                 <div class="form-group">
-                    <label for="postTags">Tags (comma-separated)</label>
-                    <input type="text" id="postTags" placeholder="e.g., Housing, Mental Health, Support Needed">
+                    <label for="postTags">Tags (optional, comma-separated)</label>
+                    <input type="text" id="postTags" placeholder="E.g., Housing, Support, Mental Health">
                 </div>
+                
                 <div class="modal-footer">
-                    <button type="button" class="btn-secondary" onclick="closeModal()">Cancel</button>
-                    <button type="submit" class="btn-primary">Post to Forum</button>
+                    <button type="button" class="btn-secondary" id="cancelBtn">Cancel</button>
+                    <button type="submit" class="btn-primary">📤 Submit Post</button>
                 </div>
             </form>
         </div>
