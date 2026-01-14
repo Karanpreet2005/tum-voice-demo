@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TUM Voice - Student Forum</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>🎓 TUM Voice</h1>
+                <p class="tagline">Amplifying Student Experiences</p>
+            </div>
+            <nav>
+                <button class="btn-primary">+ New Post</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="info-banner">
+            <div class="info-content">
+                <span class="info-icon">ℹ️</span>
+                <p>Posts with <strong>50+ likes</strong> are automatically forwarded to TUM authorities</p>
+            </div>
+        </div>
+
+        <div class="forum-container">
+            <!-- Post 1 -->
+            <article class="post" data-likes="67">
+                <div class="post-header">
+                    <div class="user-info">
+                        <div class="avatar">AS</div>
+                        <div>
+                            <h3 class="username">Ananya Sharma</h3>
+                            <p class="post-meta">International Student • Computer Science • 2 days ago</p>
+                        </div>
+                    </div>
+                    <span class="badge badge-forwarded">✓ Forwarded to Authorities</span>
+                </div>
+                <div class="post-content">
+                    <h2 class="post-title">Housing Crisis: International Students Struggle to Find Accommodation</h2>
+                    <p>As an international student from India, I've been struggling to find affordable housing near campus. The housing shortage is real, and many of us are forced to accept overpriced rooms or commute for hours. The university portal has limited listings, and most landlords prefer German-speaking tenants. We need better support from TUM's housing office and more partnerships with verified landlords.</p>
+                    <div class="post-tags">
+                        <span class="tag">Housing</span>
+                        <span class="tag">International Students</span>
+                        <span class="tag">Support Needed</span>
+                    </div>
+                </div>
+                <div class="post-footer">
+                    <button class="like-btn liked" onclick="toggleLike(this)">
+                        <span class="like-icon">❤️</span>
+                        <span class="like-count">67</span>
+                    </button>
+                    <button class="comment-btn">
+                        💬 <span>24</span>
+                    </button>
+                    <button class="share-btn">
+                        🔗 Share
+                    </button>
+                </div>
+            </article>
+
+            <!-- Post 2 -->
+            <article class="post" data-likes="89">
+                <div class="post-header">
+                    <div class="user-info">
+                        <div class="avatar">MK</div>
+                        <div>
+                            <h3 class="username">Mohammed Khalil</h3>
+                            <p class="post-meta">International Student • Mechanical Engineering • 5 days ago</p>
+                        </div>
+                    </div>
+                    <span class="badge badge-forwarded">✓ Forwarded to Authorities</span>
+                </div>
+                <div class="post-content">
+                    <h2 class="post-title">Limited German Language Support in Critical Administrative Services</h2>
+                    <p>I want to bring attention to the language barriers we face at the Ausländerbehörde and other administrative offices. Many international students struggle with visa renewals and residence permits because documents are only in German, and staff rarely speak English. This creates unnecessary stress and delays. Can TUM provide dedicated support staff or translation services for these critical processes?</p>
+                    <div class="post-tags">
+                        <span class="tag">Administration</span>
+                        <span class="tag">Language Barrier</span>
+                        <span class="tag">Visa Issues</span>
+                    </div>
+                </div>
+                <div class="post-footer">
+                    <button class="like-btn liked" onclick="toggleLike(this)">
+                        <span class="like-icon">❤️</span>
+                        <span class="like-count">89</span>
+                    </button>
+                    <button class="comment-btn">
+                        💬 <span>42</span>
+                    </button>
+                    <button class="share-btn">
+                        🔗 Share
+                    </button>
+                </div>
+            </article>
+
+            <!-- Post 3 -->
+            <article class="post" data-likes="34">
+                <div class="post-header">
+                    <div class="user-info">
+                        <div class="avatar">LC</div>
+                        <div>
+                            <h3 class="username">Lisa Chen</h3>
+                            <p class="post-meta">International Student • Data Science • 1 week ago</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <h2 class="post-title">Mental Health Support: More Resources Needed for International Students</h2>
+                    <p>Being away from home and adjusting to a new culture is challenging. While TUM offers counseling services, the waiting times are too long (3-4 weeks!), and there aren't enough counselors who understand the unique challenges international students face. Cultural adaptation, homesickness, and academic pressure are real issues that need immediate attention.</p>
+                    <div class="post-tags">
+                        <span class="tag">Mental Health</span>
+                        <span class="tag">Wellbeing</span>
+                        <span class="tag">Counseling</span>
+                    </div>
+                </div>
+                <div class="post-footer">
+                    <button class="like-btn" onclick="toggleLike(this)">
+                        <span class="like-icon">🤍</span>
+                        <span class="like-count">34</span>
+                    </button>
+                    <button class="comment-btn">
+                        💬 <span>18</span>
+                    </button>
+                    <button class="share-btn">
+                        🔗 Share
+                    </button>
+                </div>
+            </article>
+
+            <!-- Post 4 -->
+            <article class="post" data-likes="56">
+                <div class="post-header">
+                    <div class="user-info">
+                        <div class="avatar">RG</div>
+                        <div>
+                            <h3 class="username">Raj Gupta</h3>
+                            <p class="post-meta">International Student • Business Administration • 3 days ago</p>
+                        </div>
+                    </div>
+                    <span class="badge badge-forwarded">✓ Forwarded to Authorities</span>
+                </div>
+                <div class="post-content">
+                    <h2 class="post-title">Career Services for International Students Need Improvement</h2>
+                    <p>The career center is great for German students, but international students need more support navigating the German job market. We need workshops on work visa options, networking events with international companies, and guidance on CVs that meet German standards. Many of us want to stay and work in Germany after graduation but don't know where to start.</p>
+                    <div class="post-tags">
+                        <span class="tag">Career Services</span>
+                        <span class="tag">Job Market</span>
+                        <span class="tag">Work Visa</span>
+                    </div>
+                </div>
+                <div class="post-footer">
+                    <button class="like-btn liked" onclick="toggleLike(this)">
+                        <span class="like-icon">❤️</span>
+                        <span class="like-count">56</span>
+                    </button>
+                    <button class="comment-btn">
+                        💬 <span>31</span>
+                    </button>
+                    <button class="share-btn">
+                        🔗 Share
+                    </button>
+                </div>
+            </article>
+
+            <!-- Post 5 -->
+            <article class="post" data-likes="23">
+                <div class="post-header">
+                    <div class="user-info">
+                        <div class="avatar">EN</div>
+                        <div>
+                            <h3 class="username">Elena Novak</h3>
+                            <p class="post-meta">International Student • Physics • 4 days ago</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <h2 class="post-title">Appreciation: International Office's Welcome Week Was Amazing!</h2>
+                    <p>I just wanted to share a positive experience! The welcome week organized by the international office was incredibly helpful. The campus tours, orientation sessions, and meet-and-greet events helped me settle in quickly. Special thanks to the buddy program that paired me with a German student who showed me around Munich. More programs like this would be wonderful! 🙌</p>
+                    <div class="post-tags">
+                        <span class="tag">Positive Feedback</span>
+                        <span class="tag">Orientation</span>
+                        <span class="tag">Buddy Program</span>
+                    </div>
+                </div>
+                <div class="post-footer">
+                    <button class="like-btn" onclick="toggleLike(this)">
+                        <span class="like-icon">🤍</span>
+                        <span class="like-count">23</span>
+                    </button>
+                    <button class="comment-btn">
+                        💬 <span>12</span>
+                    </button>
+                    <button class="share-btn">
+                        🔗 Share
+                    </button>
+                </div>
+            </article>
+
+            <!-- Post 6 -->
+            <article class="post" data-likes="45">
+                <div class="user-info">
+                    <div class="user-info">
+                        <div class="avatar">TW</div>
+                        <div>
+                            <h3 class="username">Thomas Wang</h3>
+                            <p class="post-meta">International Student • Electrical Engineering • 1 week ago</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <h2 class="post-title">Lab Access and Equipment: International Students Face Scheduling Issues</h2>
+                    <p>Getting lab time as an international student has been challenging. The scheduling system seems to prioritize certain groups, and by the time we get access, peak hours are full. This affects our project work and research. We need a fairer allocation system that ensures all students have equal opportunity to use lab facilities during reasonable hours.</p>
+                    <div class="post-tags">
+                        <span class="tag">Lab Access</span>
+                        <span class="tag">Facilities</span>
+                        <span class="tag">Fair Access</span>
+                    </div>
+                </div>
+                <div class="post-footer">
+                    <button class="like-btn" onclick="toggleLike(this)">
+                        <span class="like-icon">🤍</span>
+                        <span class="like-count">45</span>
+                    </button>
+                    <button class="comment-btn">
+                        💬 <span>19</span>
+                    </button>
+                    <button class="share-btn">
+                        🔗 Share
+                    </button>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <div class="floating-stats">
+        <div class="stat">
+            <span class="stat-number">127</span>
+            <span class="stat-label">Active Posts</span>
+        </div>
+        <div class="stat">
+            <span class="stat-number">3</span>
+            <span class="stat-label">Forwarded Today</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
