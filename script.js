@@ -54,6 +54,32 @@ const samplePosts = [
         likes: 56,
         comments: 31,
         liked: true
+    },
+    {
+        id: 5,
+        author: "Sofia Martinez",
+        initials: "SM",
+        program: "Chemistry",
+        timeAgo: "6 days ago",
+        title: "International Student ID Card Delays Affecting Daily Life",
+        content: "I've been waiting over 6 weeks for my student ID card, which means I can't access the library, cafeteria discounts, or public transport benefits. This administrative delay is making my first semester incredibly difficult and expensive. Other universities process these cards within a week!",
+        tags: ["Administration", "Student ID", "Support Needed"],
+        likes: 73,
+        comments: 28,
+        liked: true
+    },
+    {
+        id: 6,
+        author: "Yuki Tanaka",
+        initials: "YT",
+        program: "Robotics",
+        timeAgo: "1 day ago",
+        title: "Appreciation: International Mentorship Program is Excellent",
+        content: "I want to highlight the amazing mentorship program that paired me with a senior student. They helped me navigate course registration, find study groups, and understand German academic culture. This program should be expanded - it made such a difference in my transition to TUM!",
+        tags: ["Positive Feedback", "Mentorship", "Integration"],
+        likes: 42,
+        comments: 15,
+        liked: false
     }
 ];
 
