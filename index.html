@@ -27,7 +27,7 @@
             </div>
         </div>
 
-        <div class="forum-container">
+        <div class="forum-container" id="postsContainer">
             <!-- Post 1 -->
             <article class="post" data-likes="67">
                 <div class="post-header">
@@ -236,6 +236,42 @@
             </article>
         </div>
     </main>
+
+    <!-- New Post Modal -->
+    <div id="newPostModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create New Post</h2>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <form id="newPostForm">
+                <div class="form-group">
+                    <label for="authorName">Your Name *</label>
+                    <input type="text" id="authorName" required placeholder="e.g., John Doe">
+                </div>
+                <div class="form-group">
+                    <label for="authorProgram">Program *</label>
+                    <input type="text" id="authorProgram" required placeholder="e.g., Computer Science">
+                </div>
+                <div class="form-group">
+                    <label for="postTitle">Post Title *</label>
+                    <input type="text" id="postTitle" required placeholder="Summarize your concern in one line">
+                </div>
+                <div class="form-group">
+                    <label for="postContent">Your Story *</label>
+                    <textarea id="postContent" required rows="6" placeholder="Share your experience, concern, or positive feedback..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="postTags">Tags (comma-separated)</label>
+                    <input type="text" id="postTags" placeholder="e.g., Housing, Mental Health, Support Needed">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="closeModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">Post to Forum</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <div class="floating-stats">
         <div class="stat">
