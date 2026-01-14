@@ -262,7 +262,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     // New post button
-    document.querySelector('.btn-primary').addEventListener('click', openModal);
+    const newPostBtn = document.querySelector('.btn-primary');
+    if (newPostBtn) {
+        newPostBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            openModal();
+        });
+    }
     
     // Close modal when clicking outside
     window.addEventListener('click', function(e) {
