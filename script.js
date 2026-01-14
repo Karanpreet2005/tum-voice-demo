@@ -179,10 +179,10 @@ function showNotification(message) {
     const notification = document.createElement('div');
     notification.style.cssText = `
         position: fixed; top: 20px; right: 20px; z-index: 10000;
-        background: rgba(48, 112, 179, 0.85);
-        color: white; padding: 12px 20px; border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        font-weight: 600; font-size: 0.9em;
+        background: rgba(48, 112, 179, 0.5);
+        color: white; padding: 8px 14px; border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        font-weight: 500; font-size: 0.8em;
         animation: slideIn 0.3s ease-out;
     `;
     notification.textContent = message;
