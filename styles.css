@@ -95,27 +95,26 @@ header .container {
 
 /* Layout */
 .main-layout {
-    display: flex;
+    display: grid;
+    grid-template-columns: 800px 320px;
     gap: 25px;
-    align-items: flex-start;
     max-width: 1400px;
     margin: 0 auto;
+    align-items: start;
 }
 
 /* Forum Container */
 .forum-container {
-    flex: 0 0 800px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    min-width: 0;
 }
 
 /* Sidebar */
 .sidebar {
-    flex: 0 0 320px;
     position: sticky;
     top: 20px;
-    align-self: flex-start;
     height: fit-content;
 }
 
@@ -500,11 +499,10 @@ header .container {
 /* Responsive Design */
 @media (max-width: 1024px) {
     .main-layout {
-        flex-direction: column-reverse;
+        grid-template-columns: 1fr;
     }
     
     .sidebar {
-        width: 100%;
         position: static;
     }
     
