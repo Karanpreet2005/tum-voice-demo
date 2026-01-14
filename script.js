@@ -84,7 +84,7 @@ function renderPosts() {
 // Create HTML for a single post
 function createPostHTML(post) {
     const forwardedBadge = post.likes >= LIKE_THRESHOLD 
-        ? '<span class="badge badge-forwarded">✓ Forwarded to Authorities</span>' 
+        ? '<span class="badge badge-forwarded">Forwarded to Authorities</span>' 
         : '';
     
     const likeIcon = post.liked ? '♥' : '♡';
@@ -267,7 +267,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const tagsInput = document.getElementById('postTags').value.trim();
         
         // Generate initials
-        const initials = name === 'Anonymous Student' ? '🔒' : 
+        const initials = name === 'Anonymous Student' ? '..' : 
             name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
         
         // Parse tags
@@ -294,7 +294,7 @@ document.addEventListener('DOMContentLoaded', function() {
         renderPosts();
         
         closeModal();
-        showNotification('✅ Your post has been published!');
+        showNotification('Your post has been published!');
         
         // Scroll to top
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -309,7 +309,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const content = document.getElementById('replyContent').value.trim();
         
         // Generate initials
-        const initials = name === 'Anonymous' ? '🔒' : 
+        const initials = name === 'Anonymous' ? '..' : 
             name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
         
         // Create new comment
@@ -337,7 +337,7 @@ document.addEventListener('DOMContentLoaded', function() {
         renderPosts();
         
         closeReplyModal();
-        showNotification('💬 Comment posted successfully!');
+        showNotification('Comment posted successfully!');
         
         // Scroll to the post
         const postElement = document.querySelector(`[data-id="${postId}"]`);

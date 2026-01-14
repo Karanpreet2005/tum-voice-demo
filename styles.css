@@ -224,9 +224,9 @@ header .container {
 }
 
 .badge {
-    padding: 6px 12px;
+    padding: 4px 10px;
     border-radius: 20px;
-    font-size: 0.85em;
+    font-size: 0.75em;
     font-weight: 600;
 }
 
