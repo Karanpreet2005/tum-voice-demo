@@ -98,25 +98,25 @@ header .container {
     display: flex;
     gap: 25px;
     align-items: flex-start;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 /* Forum Container */
 .forum-container {
-    flex: 1;
+    flex: 0 0 800px;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    max-width: 800px;
 }
 
 /* Sidebar */
 .sidebar {
-    width: 320px;
+    flex: 0 0 320px;
     position: sticky;
     top: 20px;
     align-self: flex-start;
-    max-height: calc(100vh - 40px);
-    overflow-y: auto;
+    height: fit-content;
 }
 
 .sidebar-section {
