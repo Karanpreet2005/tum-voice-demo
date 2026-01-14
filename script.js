@@ -155,7 +155,7 @@ function toggleLike(postId) {
     renderPosts();
     
     if (post.liked && post.likes === LIKE_THRESHOLD) {
-        showNotification('🎉 Post forwarded to TUM authorities!');
+        showNotification('Post forwarded to TUM authorities!');
     }
 }
 
@@ -179,10 +179,10 @@ function showNotification(message) {
     const notification = document.createElement('div');
     notification.style.cssText = `
         position: fixed; top: 20px; right: 20px; z-index: 10000;
-        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-        color: white; padding: 20px 30px; border-radius: 15px;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-        font-weight: 600; font-size: 1.1em;
+        background: rgba(48, 112, 179, 0.85);
+        color: white; padding: 12px 20px; border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        font-weight: 600; font-size: 0.9em;
         animation: slideIn 0.3s ease-out;
     `;
     notification.textContent = message;
@@ -222,7 +222,7 @@ function closeReplyModal() {
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('✅ TUM Voice loaded!');
+    console.log('TUM Voice loaded!');
     
     // Render posts
     renderPosts();
