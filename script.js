@@ -61,6 +61,14 @@ const samplePosts = [
 let posts = JSON.parse(localStorage.getItem('tumVoicePosts')) || samplePosts;
 let nextPostId = Math.max(...posts.map(p => p.id)) + 1;
 
+// Initialize comments from localStorage
+let comments = JSON.parse(localStorage.getItem('tumVoiceComments')) || {};
+
+// Save comments to localStorage
+function saveComments() {
+    localStorage.setItem('tumVoiceComments', JSON.stringify(comments));
+}
+
 // Save posts to localStorage
 function savePosts() {
     localStorage.setItem('tumVoicePosts', JSON.stringify(posts));
@@ -84,6 +92,23 @@ function createPostHTML(post) {
     
     const tagsHTML = post.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
     
+    // Get comments for this post
+    const postComments = comments[post.id] || [];
+    const commentsHTML = postComments.length > 0 ? `
+        <div class="comments-section">
+            <h4>Comments (${postComments.length})</h4>
+            ${postComments.map(comment => `
+                <div class="comment">
+                    <div class="comment-avatar">${comment.initials}</div>
+                    <div class="comment-content">
+                        <div class="comment-author">${comment.author} <span class="comment-time">${comment.timeAgo}</span></div>
+                        <p>${comment.content}</p>
+                    </div>
+                </div>
+            `).join('')}
+        </div>
+    ` : '';
+    
     return `
         <article class="post" data-id="${post.id}">
             <div class="post-header">
@@ -101,13 +126,15 @@ function createPostHTML(post) {
                 <p>${post.content}</p>
                 <div class="post-tags">${tagsHTML}</div>
             </div>
+            ${commentsHTML}
             <div class="post-footer">
                 <button class="like-btn ${likedClass}" onclick="toggleLike(${post.id})">
                     <span class="like-icon">${likeIcon}</span>
                     <span class="like-count">${post.likes}</span>
                 </button>
-                <button class="comment-btn">💬 <span>${post.comments}</span></button>
-                <button class="share-btn">🔗 Share</button>
+                <button class="comment-btn" onclick="openReplyModal(${post.id})">
+                    💬 <span>${postComments.length}</span>
+                </button>
             </div>
         </article>
     `;
@@ -180,6 +207,16 @@ function closeModal() {
     document.getElementById('newPostForm').reset();
 }
 
+function openReplyModal(postId) {
+    document.getElementById('replyPostId').value = postId;
+    document.getElementById('replyModal').style.display = 'block';
+}
+
+function closeReplyModal() {
+    document.getElementById('replyModal').style.display = 'none';
+    document.getElementById('replyForm').reset();
+}
+
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
     console.log('✅ TUM Voice loaded!');
@@ -200,11 +237,19 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('closeModal').addEventListener('click', closeModal);
     document.getElementById('cancelBtn').addEventListener('click', closeModal);
     
+    // Reply modal close buttons
+    document.getElementById('closeReplyModal').addEventListener('click', closeReplyModal);
+    document.getElementById('cancelReplyBtn').addEventListener('click', closeReplyModal);
+    
     // Click outside to close
     window.addEventListener('click', function(e) {
-        const modal = document.getElementById('newPostModal');
-        if (e.target === modal) {
+        const newPostModal = document.getElementById('newPostModal');
+        const replyModal = document.getElementById('replyModal');
+        if (e.target === newPostModal) {
             closeModal();
+        }
+        if (e.target === replyModal) {
+            closeReplyModal();
         }
     });
     
@@ -250,5 +295,51 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Scroll to top
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // Reply form submission
+    document.getElementById('replyForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const postId = parseInt(document.getElementById('replyPostId').value);
+        const name = document.getElementById('replyName').value.trim() || 'Anonymous';
+        const content = document.getElementById('replyContent').value.trim();
+        
+        // Generate initials
+        const initials = name === 'Anonymous' ? '🔒' : 
+            name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+        
+        // Create new comment
+        const newComment = {
+            author: name,
+            initials: initials,
+            content: content,
+            timeAgo: "Just now"
+        };
+        
+        // Add comment to the post
+        if (!comments[postId]) {
+            comments[postId] = [];
+        }
+        comments[postId].push(newComment);
+        
+        // Update post's comment count
+        const post = posts.find(p => p.id === postId);
+        if (post) {
+            post.comments = comments[postId].length;
+        }
+        
+        saveComments();
+        savePosts();
+        renderPosts();
+        
+        closeReplyModal();
+        showNotification('💬 Comment posted successfully!');
+        
+        // Scroll to the post
+        const postElement = document.querySelector(`[data-id="${postId}"]`);
+        if (postElement) {
+            postElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
     });
 });

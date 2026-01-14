@@ -214,6 +214,75 @@ header .container {
     border-top: 1px solid #eee;
 }
 
+/* Comments Section */
+.comments-section {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid #f0f0f0;
+}
+
+.comments-section h4 {
+    color: #667eea;
+    font-size: 1em;
+    margin-bottom: 15px;
+}
+
+.comment {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 15px;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.comment-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.9em;
+    flex-shrink: 0;
+}
+
+.comment-content {
+    flex: 1;
+}
+
+.comment-author {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+    font-size: 0.95em;
+}
+
+.comment-time {
+    font-weight: 400;
+    color: #999;
+    font-size: 0.85em;
+    margin-left: 8px;
+}
+
+.comment-content p {
+    color: #555;
+    line-height: 1.5;
+    margin: 0;
+    font-size: 0.95em;
+}
+
+/* Post Footer */
+.post-footer {
+    display: flex;
+    gap: 15px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
 .post-footer button {
     background: none;
     border: 1px solid #ddd;
