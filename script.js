@@ -123,7 +123,10 @@ function createPostHTML(post) {
             </div>
             <div class="post-content">
                 <h2 class="post-title">${post.title}</h2>
-                <p>${post.content}</p>
+                <div class="post-text ${post.content.length > 200 ? 'collapsed' : ''}">
+                    <p>${post.content}</p>
+                </div>
+                ${post.content.length > 200 ? '<button class="read-more-btn" onclick="toggleReadMore(event)"><span>▼ Read more</span></button>' : ''}
                 <div class="post-tags">${tagsHTML}</div>
             </div>
             ${commentsHTML}
@@ -172,6 +175,21 @@ function updateStats() {
             <span class="stat-label">Forwarded Today</span>
         </div>
     `;
+}
+
+// Toggle read more/less for posts
+function toggleReadMore(event) {
+    const btn = event.target.closest('.read-more-btn');
+    const postText = btn.previousElementSibling;
+    const isCollapsed = postText.classList.contains('collapsed');
+    
+    if (isCollapsed) {
+        postText.classList.remove('collapsed');
+        btn.innerHTML = '<span>▲ Read less</span>';
+    } else {
+        postText.classList.add('collapsed');
+        btn.innerHTML = '<span>▼ Read more</span>';
+    }
 }
 
 // Show notification
