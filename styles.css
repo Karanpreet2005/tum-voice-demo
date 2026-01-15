@@ -189,6 +189,61 @@ header .container {
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 20px;
+    position: relative;
+}
+
+.post-menu-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.5em;
+    color: #999;
+    cursor: pointer;
+    padding: 5px 10px;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.post-menu-btn:hover {
+    color: #3070B3;
+}
+
+.post-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 35px;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+    min-width: 120px;
+}
+
+.post-menu button {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    border: none;
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
+    font-size: 0.9em;
+    color: #333;
+    transition: background 0.2s;
+}
+
+.post-menu button:hover {
+    background: #f5f7fa;
+    color: #3070B3;
+}
+
+.post-menu button:first-child {
+    border-radius: 8px 8px 0 0;
+}
+
+.post-menu button:last-child {
+    border-radius: 0 0 8px 8px;
 }
 
 .user-info {

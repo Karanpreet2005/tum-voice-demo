@@ -146,6 +146,10 @@ function createPostHTML(post) {
                     </div>
                 </div>
                 ${forwardedBadge}
+                <button class="post-menu-btn" onclick="togglePostMenu(event, ${post.id})">⋮</button>
+                <div class="post-menu" id="menu-${post.id}">
+                    <button onclick="editPost(${post.id})">Edit Post</button>
+                </div>
             </div>
             <div class="post-content">
                 <h2 class="post-title">${post.title}</h2>
@@ -218,6 +222,44 @@ function toggleReadMore(event) {
     }
 }
 
+// Toggle post menu
+function togglePostMenu(event, postId) {
+    event.stopPropagation();
+    const menu = document.getElementById(`menu-${postId}`);
+    const allMenus = document.querySelectorAll('.post-menu');
+    allMenus.forEach(m => {
+        if (m !== menu) m.style.display = 'none';
+    });
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+}
+
+// Close menus when clicking outside
+document.addEventListener('click', () => {
+    document.querySelectorAll('.post-menu').forEach(m => m.style.display = 'none');
+});
+
+// Edit post
+function editPost(postId) {
+    const post = posts.find(p => p.id === postId);
+    if (!post) return;
+    
+    // Fill form with existing data
+    document.getElementById('postTitle').value = post.title;
+    document.getElementById('postContent').value = post.content;
+    document.getElementById('authorName').value = post.author.includes('Anonymous') ? '' : post.author;
+    document.getElementById('authorProgram').value = post.program;
+    document.getElementById('postTags').value = post.tags.join(', ');
+    
+    // Store the post ID being edited
+    document.getElementById('newPostModal').dataset.editingId = postId;
+    
+    // Change modal title
+    document.querySelector('.modal-header h2').textContent = '✏️ Edit Post';
+    
+    // Show modal
+    document.getElementById('newPostModal').style.display = 'block';
+}
+
 // Show notification
 function showNotification(message) {
     const notification = document.createElement('div');
@@ -246,12 +288,18 @@ function showNotification(message) {
 
 // Modal functions
 function openModal() {
-    document.getElementById('newPostModal').style.display = 'block';
+    const modal = document.getElementById('newPostModal');
+    delete modal.dataset.editingId;
+    document.querySelector('.modal-header h2').textContent = '✍️ Create New Post';
+    modal.style.display = 'block';
 }
 
 function closeModal() {
-    document.getElementById('newPostModal').style.display = 'none';
+    const modal = document.getElementById('newPostModal');
+    modal.style.display = 'none';
     document.getElementById('newPostForm').reset();
+    delete modal.dataset.editingId;
+    document.querySelector('.modal-header h2').textContent = '✍️ Create New Post';
 }
 
 function openReplyModal(postId) {
@@ -304,6 +352,9 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('newPostForm').addEventListener('submit', function(e) {
         e.preventDefault();
         
+        const modal = document.getElementById('newPostModal');
+        const editingId = modal.dataset.editingId;
+        
         const name = document.getElementById('authorName').value.trim() || 'Anonymous Student';
         const program = document.getElementById('authorProgram').value.trim();
         const title = document.getElementById('postTitle').value.trim();
@@ -317,15 +368,29 @@ document.addEventListener('DOMContentLoaded', function() {
         // Parse tags
         const tags = tagsInput ? tagsInput.split(',').map(t => t.trim()).filter(t => t) : ['General'];
         
-        // Create new post
-        const newPost = {
-            id: nextPostId++,
-            author: name,
-            initials: initials,
-            program: program,
-            timeAgo: "Just now",
-            title: title,
-            content: content,
+        if (editingId) {
+            // Update existing post
+            const post = posts.find(p => p.id === parseInt(editingId));
+            if (post) {
+                post.author = name;
+                post.initials = initials;
+                post.program = program;
+                post.title = title;
+                post.content = content;
+                post.tags = tags;
+                showNotification('Post updated successfully!');
+            }
+            delete modal.dataset.editingId;
+        } else {
+            // Create new post
+            const newPost = {
+                id: nextPostId++,
+                author: name,
+                initials: initials,
+                program: program,
+                timeAgo: "Just now",
+                title: title,
+                content: content,
             tags: tags,
             likes: 0,
             comments: 0,
@@ -334,11 +399,13 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Add to top of posts
         posts.unshift(newPost);
+        showNotification('Your post has been published!');
+        }
+        
         savePosts();
         renderPosts();
         
         closeModal();
-        showNotification('Your post has been published!');
         
         // Scroll to top
         window.scrollTo({ top: 0, behavior: 'smooth' });
